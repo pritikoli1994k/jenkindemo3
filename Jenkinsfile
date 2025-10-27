@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         PYTHON = "C:\\Users\\tanuj\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+        APP_TOKEN = credentials("APP_TOKEN")
     }
 
     stages {
@@ -14,23 +15,16 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat 'pip install -m pip install -r requirements.txt'
             }
         }
 
         stage('Extract Data') {
             steps {
-                bat "${env.PYTHON} -m extract_data.py"
+                BAT "set TOKEN=${env.APP_TOKEN}"
+                bat "${env.PYTHON} extract_data.py"
             }
         }
     }
 
-    post {
-        success {
-            echo "✅ Data extraction completed successfully!"
-        }
-        failure {
-            echo "❌ Pipeline failed during data extraction."
-        }
-    }
 }
