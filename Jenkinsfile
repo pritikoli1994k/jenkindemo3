@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         PYTHON = "C:\\Users\\tanuj\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
-        // APP_TOKEN = credentials("APP_TOKEN")
+        APP_TOKEN = credentials('APP_TOKEN')   // use Jenkins credentials (string type)
     }
 
     stages {
@@ -15,22 +15,29 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
+                // Corrected pip install command
                 bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Extract Data') {
             steps {
-            //    bat """
-            //     SET TOKEN=%APP_TOKEN%
-            //     %PYTHON% extract_data.py
-            //     """
-
-                bat "SET TOKEN=${env.APP_TOKEN}"
-                bat "${env.PYTHON} extract_data.py"
-
+                // Set token temporarily and run the script in one command
+                bat """
+                set TOKEN=${env.APP_TOKEN}
+                ${env.PYTHON} extract_data.py
+                """
             }
         }
     }
 
+    post {
+        success {
+            echo "✅ Pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed. Check console output for details."
+        }
+    }
 }
+
