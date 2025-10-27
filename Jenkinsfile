@@ -4,6 +4,8 @@ pipeline {
     environment {
         PYTHON = "C:\\Users\\tanuj\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
         APP_TOKEN = credentials("APP_TOKEN")   // use Jenkins credentials (string type)
+        PIP = "C:\\Users\\tanuj\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\pip.exe"
+
                 }
     stages {
         stage('Checkout Code') {
