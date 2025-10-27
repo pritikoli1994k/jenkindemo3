@@ -20,7 +20,7 @@ pipeline {
 
         stage('Extract Data') {
             steps {
-                bat "${env.PYTHON} extract_data.py"
+                bat "${env.PYTHON} -m extract_data.py"
             }
         }
     }
