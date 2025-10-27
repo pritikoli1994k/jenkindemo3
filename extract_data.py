@@ -1,7 +1,9 @@
 import requests
 import pandas as pd
 
-url = "https://jsonplaceholder.typicode.com/users"  # Example API
+url = "https://jsonplaceholder.typicode.com/users"  
+
+# Example API
 response = requests.get(url)
 
 if response.status_code == 200:
