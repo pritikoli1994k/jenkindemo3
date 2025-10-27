@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         PYTHON = "C:\\Users\\tanuj\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
-        APP_TOKEN = credentials("APP_TOKEN")
+        // APP_TOKEN = credentials("APP_TOKEN")
     }
 
     stages {
