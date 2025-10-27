@@ -23,7 +23,7 @@ token = os.getenv("TOKEN")
 print(f"Token = {token}")
 
 # Check if the token matches the expected value
-if token == "1234":
+if token == "12345":
     print("valid")
 else:
     print("invalid")

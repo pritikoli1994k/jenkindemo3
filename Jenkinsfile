@@ -3,20 +3,18 @@ pipeline {
 
     environment {
         PYTHON = "C:\\Users\\tanuj\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
-        APP_TOKEN = credentials('APP_TOKEN')   // use Jenkins credentials (string type)
-    }
-
+        APP_TOKEN = credentials("APP_TOKEN")   // use Jenkins credentials (string type)
+                }
     stages {
         stage('Checkout Code') {
             steps {
                 checkout scm
             }
         }
-
         stage('Install Dependencies') {
             steps {
                 // Corrected pip install command
-                bat 'pip install -r requirements.txt'
+                bat 'pip install -m requirements.txt'
             }
         }
 
@@ -30,8 +28,7 @@ pipeline {
             }
         }
     }
-
-    post {
+   post {
         success {
             echo "✅ Pipeline completed successfully!"
         }
@@ -40,4 +37,3 @@ pipeline {
         }
     }
 }
-
